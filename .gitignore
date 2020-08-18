@@ -2,3 +2,11 @@
 .pytest_cache
 .python-version
 __pycache__
+
+.terraform
+.env
+
+/node_modules
+**node_modules*
+src/CsetAnalytics/dist
+src/.env
