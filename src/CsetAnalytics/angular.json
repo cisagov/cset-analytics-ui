@@ -1,82 +1,69 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
+  "defaultProject": "CsetAnalytics",
   "newProjectRoot": "projects",
   "projects": {
     "CsetAnalytics": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/CsetAnalytics",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
-            "aot": false,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss",
-              "./node_modules/bootstrap/dist/css/bootstrap.css"
-            ],
-            "scripts": [
-              "./node_modules/bootstrap/dist/js/bootstrap.js"
-            ]
-          },
           "configurations": {
             "production": {
+              "aot": true,
+              "budgets": [
+                {
+                  "maximumError": "5mb",
+                  "maximumWarning": "2mb",
+                  "type": "initial"
+                },
+                {
+                  "maximumError": "10kb",
+                  "maximumWarning": "6kb",
+                  "type": "anyComponentStyle"
+                }
+              ],
+              "buildOptimizer": true,
+              "extractCss": true,
+              "extractLicenses": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "namedChunks": false,
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
+              "vendorChunk": false
             }
+          },
+          "options": {
+            "aot": false,
+            "assets": ["src/favicon.ico", "src/assets"],
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "outputPath": "dist/CsetAnalytics",
+            "polyfills": "src/polyfills.ts",
+            "scripts": ["./node_modules/bootstrap/dist/js/bootstrap.js"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.css"
+            ],
+            "tsConfig": "tsconfig.app.json"
           }
         },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "CsetAnalytics:build"
-          },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
           "configurations": {
             "production": {
-              "browserTarget": "CsetAnalytics:build:production"
+              "devServerTarget": "CsetAnalytics:serve:production"
             }
+          },
+          "options": {
+            "devServerTarget": "CsetAnalytics:serve",
+            "protractorConfig": "e2e/protractor.conf.js"
           }
         },
         "extract-i18n": {
@@ -85,51 +72,54 @@
             "browserTarget": "CsetAnalytics:build"
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
-            ],
-            "scripts": []
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "exclude": ["**/node_modules/**"],
             "tsConfig": [
               "tsconfig.app.json",
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
             ]
           }
         },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "CsetAnalytics:serve"
-          },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "devServerTarget": "CsetAnalytics:serve:production"
+              "browserTarget": "CsetAnalytics:build:production"
             }
+          },
+          "options": {
+            "browserTarget": "CsetAnalytics:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "assets": ["src/favicon.ico", "src/assets"],
+            "karmaConfig": "karma.conf.js",
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "scripts": [],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
+            ],
+            "tsConfig": "tsconfig.spec.json"
           }
         }
-      }
+      },
+      "prefix": "app",
+      "projectType": "application",
+      "root": "",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "sourceRoot": "src"
     }
   },
-  "defaultProject": "CsetAnalytics"
+  "version": 1
 }
