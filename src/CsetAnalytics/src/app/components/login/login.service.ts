@@ -1,22 +1,27 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 import { Login } from "../../models/login.model";
-import * as moment from 'moment';
+import * as moment from "moment";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { share } from "rxjs/operators";
-import { ConfigService } from '../../services/config.service';
+import { ConfigService } from "../../services/config.service";
 
 @Injectable()
-
 export class LoginService {
   apiUrl: string;
-  constructor(private http: HttpClient, private router: Router, public configSvc: ConfigService) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    public configSvc: ConfigService
+  ) {
     this.apiUrl = configSvc.apiUrl;
   }
 
   public postLogin(login: Login): Observable<any> {
-    return this.http.post(this.apiUrl + 'login/authenticate',login).pipe(share());
+    return this.http
+      .post(this.apiUrl + "login/authenticate", login)
+      .pipe(share());
   }
 
   public logout() {
@@ -28,23 +33,22 @@ export class LoginService {
   }
 
   public setSession(authResult) {
-    sessionStorage.setItem('id_token', authResult.token);
-    sessionStorage.setItem('expires_at', authResult.expiration);
-    sessionStorage.setItem('username', authResult.userName);
-    sessionStorage.setItem('change_password', authResult.changePassword);
-    sessionStorage.setItem('role', authResult.role);
-    this.router.navigateByUrl('/');
+    sessionStorage.setItem("id_token", authResult.token);
+    sessionStorage.setItem("expires_at", authResult.expiration);
+    sessionStorage.setItem("username", authResult.userName);
+    sessionStorage.setItem("change_password", authResult.changePassword);
+    sessionStorage.setItem("role", authResult.role);
+    this.router.navigateByUrl("/");
   }
 
   public isLoggedIn() {
-    if (sessionStorage.getItem('id_token') != null) {
+    if (sessionStorage.getItem("id_token") != null) {
       return moment().isBefore(this.getExpiration());
     }
     return false;
   }
 
   private getExpiration() {
-
     if (sessionStorage.getItem("expires_at") == null) {
       return null;
     }
@@ -54,6 +58,6 @@ export class LoginService {
   }
 
   public logUserLogout() {
-    return this.http.get<any>('/api/Login/logUserLogout/').pipe();
+    return this.http.get<any>("/api/Login/logUserLogout/").pipe();
   }
 }

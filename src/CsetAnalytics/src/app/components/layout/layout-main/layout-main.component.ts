@@ -5,12 +5,12 @@ import { UserAuthService } from '../../../services/user-auth.service'
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-layout-main',
-  templateUrl: './layout-main.component.html',
-  styleUrls: [ './layout-main.component.scss' ]
+  selector: "app-layout-main",
+  templateUrl: "./layout-main.component.html",
+  styleUrls: ["./layout-main.component.scss"],
 })
 export class LayoutMainComponent implements OnInit {
-  username:string='';
+  username: string = "";
 
   constructor(
     public loginSvc:LoginService, 
@@ -21,7 +21,7 @@ export class LayoutMainComponent implements OnInit {
       });
   }
 
-  @ViewChild('drawer', { static: false }) 
+  @ViewChild("drawer", { static: false })
   drawer: MatSidenav;
   
   logout(){
@@ -29,7 +29,7 @@ export class LayoutMainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem("username")){
+    if (sessionStorage.getItem("username")) {
       this.username = sessionStorage.getItem("username");
     }
   }

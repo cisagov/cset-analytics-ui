@@ -3,16 +3,19 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: cset-analytics-ui
+    container_name: cset-analytics-ui-prod
+    image: pca-web-prod:1.0
     restart: unless-stopped
     ports:
-      - "4200:4200"
-    volumes:
-      - /app/node_modules
-      - ./src/CsetAnalytics:/app
+      - "4200:80"
     networks:
+      - frontend
       - backend
+    env_file:
+      - .env
+
 networks:
+  frontend:
+    name: pca_frontend
   backend:
-    name: cset_backend
+    name: pca_backend

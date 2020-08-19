@@ -12,7 +12,7 @@ const routes: Routes = [
   /*{
     path:'login', component: LayoutBlankComponent,
     children: [
-      { path: '', component: LoginComponent}, 
+      { path: '', component: LoginComponent},
       { path: 'registeruser', component: RegisterUserComponent}
   },*/
   {
@@ -33,6 +33,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

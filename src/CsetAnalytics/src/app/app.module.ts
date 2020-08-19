@@ -11,13 +11,13 @@ import { CovalentStepsModule  } from '@covalent/core/steps';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { LoginService } from './components/login/login.service';
+import { LoginService } from "./components/login/login.service";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutBlankComponent } from './components/layout/layout-blank/layout-blank.component';
-import { LayoutMainComponent } from './components/layout/layout-main/layout-main.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { LayoutBlankComponent } from "./components/layout/layout-blank/layout-blank.component";
+import { LayoutMainComponent } from "./components/layout/layout-main/layout-main.component";
 
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -30,39 +30,39 @@ import { ConfigService } from './services/config.service';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    LoginComponent, 
+    AppComponent,
+    LoginComponent,
     DashboardComponent,
     LayoutBlankComponent,
     LayoutMainComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, 
-    CommonModule, 
-    HttpClientModule, 
-    FormsModule, 
-    ReactiveFormsModule, 
-    MaterialModule, 
-    CovalentLayoutModule, 
-    CovalentStepsModule, 
+    BrowserAnimationsModule,
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    CovalentLayoutModule,
+    CovalentStepsModule,
     NgxChartsModule,
     DataTableModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [
     LoginService,
-    DashboardService, 
+    DashboardService,
     UserManagementService,
     ConfigService,
     UserAuthService,
     {
-        provide: APP_INITIALIZER,
-        useFactory: (configSvc: ConfigService) => () => configSvc.loadConfig(),
-        deps: [ConfigService],
-        multi: true
+      provide: APP_INITIALIZER,
+      useFactory: (configSvc: ConfigService) => () => configSvc.loadConfig(),
+      deps: [ConfigService],
+      multi: true,
     },
     // AuthGuard,
     // {
@@ -72,6 +72,6 @@ import { ConfigService } from './services/config.service';
     // },
     
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

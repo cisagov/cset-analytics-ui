@@ -1,69 +1,78 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm">
-            <mat-card class="mat-card-margin-10">
-                <mat-card-header class="mat-card-header-accent">
-                    <mat-card-title>Analytic Assessments</mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <div *ngIf="showAssessments">
-                        <table mat-table [dataSource]="data" class="mat-elevation-z2">
-                            <ng-container matColumnDef="assessment_Id">
-                                <th mat-header-cell *matHeaderCellDef> Assessment Id </th>
-                                <td mat-cell *matCellDef="let element"> {{element.assessment_Id}} </td>
-                            </ng-container>
-                            
-                            <!-- Name Column -->
-                            <ng-container matColumnDef="alias">
-                                <th mat-header-cell *matHeaderCellDef> Alias </th>
-                                <td mat-cell *matCellDef="let element"> {{element.alias}} </td>
-                            </ng-container>
-                            
-                            <!-- Weight Column -->
-                            <ng-container matColumnDef="assessmentCreatedDate">
-                                <th mat-header-cell *matHeaderCellDef> Create Date </th>
-                                <td mat-cell *matCellDef="let element"> {{element.assessmentCreatedDate | date}} </td>
-                            </ng-container>
-                            
-                            <!-- Symbol Column -->
-                            <ng-container matColumnDef="lastAccessedDate">
-                                <th mat-header-cell *matHeaderCellDef> Last Accessed </th>
-                                <td mat-cell *matCellDef="let element"> {{element.lastAccessedDate | date}} </td>
-                            </ng-container>
-                            
-                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="setRecord(row)"></tr>
-                        </table>
-                    </div>
-                    <div class="alert alert-danger" role="alert">
-                        No assessements available
-                    </div>
-                </mat-card-content>
-            </mat-card>
-            <mat-card class="mat-card-margin-10">
-                <mat-card-header class="mat-card-header-accent">
-                    <mat-card-title>Assessment Comparison</mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <ngx-charts-bar-horizontal
-                        [view]="view"
-                        [xScaleMax]="100"
-                        [scheme]="colorScheme"
-                        [results]="dashboardData"
-                        [gradient]="gradient"
-                        [xAxis]="showXAxis"
-                        [yAxis]="showYAxis"
-                        [legend]="showLegend"
-                        [showXAxisLabel]="showXAxisLabel"
-                        [showYAxisLabel]="showYAxisLabel"
-                        [xAxisLabel]="xAxisLabel"
-                        [yAxisLabel]="yAxisLabel"
-                        (select)="onSelect($event)">
-                    </ngx-charts-bar-horizontal>
-                </mat-card-content>
-            </mat-card>
-        </div>
+  <div class="row">
+    <div class="col-sm">
+      <mat-card class="mat-card-margin-10">
+        <mat-card-header class="mat-card-header-accent">
+          <mat-card-title>Analytic Assessments</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngIf="showAssessments">
+            <table mat-table [dataSource]="data" class="mat-elevation-z2">
+              <ng-container matColumnDef="assessment_Id">
+                <th mat-header-cell *matHeaderCellDef>Assessment Id</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.assessment_Id }}
+                </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="alias">
+                <th mat-header-cell *matHeaderCellDef>Alias</th>
+                <td mat-cell *matCellDef="let element">{{ element.alias }}</td>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="assessmentCreatedDate">
+                <th mat-header-cell *matHeaderCellDef>Create Date</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.assessmentCreatedDate | date }}
+                </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="lastAccessedDate">
+                <th mat-header-cell *matHeaderCellDef>Last Accessed</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.lastAccessedDate | date }}
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumns"
+                (click)="setRecord(row)"
+              ></tr>
+            </table>
+          </div>
+          <div class="alert alert-danger" role="alert">
+            No assessements available
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="mat-card-margin-10">
+        <mat-card-header class="mat-card-header-accent">
+          <mat-card-title>Assessment Comparison</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <ngx-charts-bar-horizontal
+            [view]="view"
+            [xScaleMax]="100"
+            [scheme]="colorScheme"
+            [results]="dashboardData"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            (select)="onSelect($event)"
+          >
+          </ngx-charts-bar-horizontal>
+        </mat-card-content>
+      </mat-card>
     </div>
+  </div>
 </div>
-
-
