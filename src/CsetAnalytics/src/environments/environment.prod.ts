@@ -1,3 +1,4 @@
 export const environment = {
-  production: true,
+  authorize: true,
+  production: true
 };
