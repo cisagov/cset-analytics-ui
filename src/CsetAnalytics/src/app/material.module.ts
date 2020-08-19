@@ -1,27 +1,33 @@
-import { NgModule } from '@angular/core';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NgModule } from "@angular/core";
+import { DragDropModule } from "@angular/cdk/drag-drop";
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatTreeModule } from '@angular/material/tree';
-import { MatCardModule } from '@angular/material/card';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatTableModule } from '@angular/material/table'
-import { MatToolbarModule, MatProgressBarModule, MatAutocompleteModule, MatSlideToggleModule, MatSidenavModule, MatListModule } from '@angular/material';
-
+import { MatButtonModule } from "@angular/material/button";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatSelectModule } from "@angular/material/select";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatTreeModule } from "@angular/material/tree";
+import { MatCardModule } from "@angular/material/card";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatInputModule } from "@angular/material/input";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatTableModule } from "@angular/material/table";
+import {
+  MatToolbarModule,
+  MatProgressBarModule,
+  MatAutocompleteModule,
+  MatSlideToggleModule,
+  MatSidenavModule,
+  MatListModule,
+} from "@angular/material";
 
 @NgModule({
   imports: [
@@ -47,8 +53,8 @@ import { MatToolbarModule, MatProgressBarModule, MatAutocompleteModule, MatSlide
     MatTabsModule,
     MatToolbarModule,
     MatMenuModule,
-    MatSidenavModule, 
-    MatTableModule
+    MatSidenavModule,
+    MatTableModule,
   ],
   exports: [
     MatButtonModule,
@@ -75,8 +81,8 @@ import { MatToolbarModule, MatProgressBarModule, MatAutocompleteModule, MatSlide
     MatToolbarModule,
     MatMenuModule,
     MatSidenavModule,
-    MatListModule, 
-    MatTableModule
-  ]
+    MatListModule,
+    MatTableModule,
+  ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

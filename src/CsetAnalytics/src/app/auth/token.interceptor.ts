@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
-} from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+  HttpErrorResponse,
+} from "@angular/common/http";
+import { Router } from "@angular/router";
+import { Observable, of } from "rxjs";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
   private handleAuthError(err: HttpErrorResponse): Observable<any> {
     if (err.status === 401 || err.status === 403) {
       this.router.navigateByUrl(`/`);
@@ -20,18 +20,17 @@ export class AuthInterceptor implements HttpInterceptor {
     return Observable.throw(err);
   }
 
-  intercept(req: HttpRequest<any>,
-    next: HttpHandler): Observable<HttpEvent<any>> {
-
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     const idToken = sessionStorage.getItem("id_token");
-    
+
     if (idToken) {
       const cloned = req.clone({
-        headers: req.headers.set("Authorization",
-          "Bearer " + idToken)
-
+        headers: req.headers.set("Authorization", "Bearer " + idToken),
       });
-      
+
       return next.handle(cloned);
     } else {
       return next.handle(req);
