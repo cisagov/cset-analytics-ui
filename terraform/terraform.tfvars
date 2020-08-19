@@ -1,4 +1,4 @@
-app    = "domain-manager"
+app    = "cset-analytics"
 region = "us-east-1"
 vpc_id = "vpc-074f7db64238a2d16"
 

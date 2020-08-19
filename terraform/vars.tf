@@ -4,7 +4,7 @@ variable "env" {
 
 variable "app" {
   type    = string
-  default = "domain-manager"
+  default = "cset-analytics"
 }
 
 variable "region" {
