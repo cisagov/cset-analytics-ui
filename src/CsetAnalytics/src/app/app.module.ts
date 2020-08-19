@@ -5,8 +5,7 @@ import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './auth/token.interceptor';
-import { AuthGuard } from './auth/authGuard';
+import { AuthGuard } from './guards/auth.guard';
 import { CovalentLayoutModule } from '@covalent/core/layout';
 import { CovalentStepsModule  } from '@covalent/core/steps';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -26,6 +25,7 @@ import { DashboardService } from './components/dashboard/dashboard.service';
 import { DataTableModule } from 'ng-angular8-datatable';
 import { RegisterUserComponent } from './components/user-management/register-user/register-user.component';
 import { UserManagementService } from './components/user-management/user-management.service';
+import { UserAuthService } from './services/user-auth.service'
 import { ConfigService } from './services/config.service';
 
 @NgModule({
@@ -57,18 +57,19 @@ import { ConfigService } from './services/config.service';
     DashboardService, 
     UserManagementService,
     ConfigService,
+    UserAuthService,
     {
         provide: APP_INITIALIZER,
         useFactory: (configSvc: ConfigService) => () => configSvc.loadConfig(),
         deps: [ConfigService],
         multi: true
     },
-    AuthGuard,
-    {
-      provide: HTTP_INTERCEPTORS, 
-      useClass: AuthInterceptor, 
-      multi: true
-    },
+    // AuthGuard,
+    // {
+    //   provide: HTTP_INTERCEPTORS, 
+    //   useClass: AuthInterceptor, 
+    //   multi: true
+    // },
     
   ],
   bootstrap: [AppComponent]
