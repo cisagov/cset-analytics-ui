@@ -1,5 +1,9 @@
 app    = "cset-analytics"
 region = "us-east-1"
+env = "dev"
+
+image_repo = "780016325729.dkr.ecr.us-east-1.amazonaws.com/cset-analytics-ui"
+
 vpc_id = "vpc-074f7db64238a2d16"
 
 private_subnet_ids = [
