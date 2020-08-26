@@ -18,6 +18,6 @@ export class UserManagementService {
   }
 
   public postCreateUser(user: RegisterUser): Observable<any> {
-    return this.http.post(this.apiUrl + "user/createuser", user).pipe(share());
+    return this.http.post(this.apiUrl + "auth/register", user).pipe(share());
   }
 }
