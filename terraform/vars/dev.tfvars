@@ -15,3 +15,5 @@ public_subnet_ids = [
     "subnet-0a365c16b67a2b6b0",
     "subnet-0ea8f699bed93417c"
 ]
+
+domain_name = "inltesting.xyz"

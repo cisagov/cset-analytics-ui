@@ -2,7 +2,7 @@
 # FARGATE
 # ===========================
 locals {
-  port = 80
+  port     = 80
   alb_port = 443
 }
 
@@ -20,7 +20,7 @@ module "container" {
   log_retention   = 7
 
   environment = {
-    "API_URL" : "https://${data.aws_lb.public.dns_name}:8443/api/"
+    "API_URL" : "https://${var.app}.${var.env}.${domain_name}:8443/api/"
   }
 }
 
@@ -31,7 +31,7 @@ module "fargate" {
   stage     = var.env
   name      = "ui"
 
-  iam_server_cert_arn   = data.aws_iam_server_certificate.self.arn
+  https_cert_arn        = data.aws_acm_certificate.cert.arn
   container_port        = local.port
   container_definition  = module.container.json
   container_name        = "${var.app}-ui"

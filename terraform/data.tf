@@ -9,3 +9,7 @@ data "aws_iam_server_certificate" "self" {
 data "aws_security_group" "alb" {
   name = "${var.app}-${var.env}-alb"
 }
+
+data "aws_acm_certificate" "cert" {
+  domain = "${var.app}.${var.env}.${domain_name}"
+}
