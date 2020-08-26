@@ -20,7 +20,7 @@ module "container" {
   log_retention   = 7
 
   environment = {
-    "API_URL" : "https://${var.app}.${var.env}.${domain_name}:8443/api/"
+    "API_URL" : "https://${var.app}.${var.env}.${var.domain_name}:8443/api/"
   }
 }
 

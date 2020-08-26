@@ -7,5 +7,5 @@ data "aws_security_group" "alb" {
 }
 
 data "aws_acm_certificate" "cert" {
-  domain = "${var.app}.${var.env}.${domain_name}"
+  domain = "${var.app}.${var.env}.${var.domain_name}"
 }
