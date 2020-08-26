@@ -1,4 +1,4 @@
-const awsmobile = {
+/* const awsmobile = {
   aws_project_region: "${AWS_PROJECT_REGION}",
   aws_cognito_identity_pool_id: "${AWS_COGNITO_IDENTITY_POOL_ID}",
   aws_cognito_region: "${AWS_COGNITO_REGION}",
@@ -20,4 +20,4 @@ const awsmobile = {
   federationTarget: "COGNITO_USER_POOLS",
 };
 
-export default awsmobile;
+export default awsmobile; */

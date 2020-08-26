@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   yAxisLabel: string = "";
   showYAxisLabel: boolean = true;
   xAxisLabel: string = "";
-  showAssessments: boolean = false;
+  showAssessments: boolean = true;
   showComparison: boolean = false;
 
   colorScheme = {

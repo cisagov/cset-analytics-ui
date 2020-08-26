@@ -25,7 +25,7 @@ export class LayoutMainComponent implements OnInit {
   drawer: MatSidenav;
   
   logout(){
-    this.userAuthSvc.signOut();
+    this.loginSvc.logout();
   }
 
   ngOnInit(): void {

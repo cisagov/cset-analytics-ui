@@ -20,24 +20,21 @@ export class LoginService {
 
   public postLogin(login: Login): Observable<any> {
     return this.http
-      .post(this.apiUrl + "login/authenticate", login)
+      .post(this.apiUrl + "auth/signin", login)
       .pipe(share());
   }
 
   public logout() {
     sessionStorage.removeItem("id_token");
     sessionStorage.removeItem("expires_at");
-    sessionStorage.removeItem("change_password");
     sessionStorage.removeItem("username");
-    sessionStorage.removeItem("role");
+    this.router.navigateByUrl("/login")
   }
 
   public setSession(authResult) {
-    sessionStorage.setItem("id_token", authResult.token);
-    sessionStorage.setItem("expires_at", authResult.expiration);
-    sessionStorage.setItem("username", authResult.userName);
-    sessionStorage.setItem("change_password", authResult.changePassword);
-    sessionStorage.setItem("role", authResult.role);
+    sessionStorage.setItem("id_token", authResult.id_token);
+    sessionStorage.setItem("expires_at", authResult.expires_at);
+    sessionStorage.setItem("username", authResult.username);
     this.router.navigateByUrl("/");
   }
 
@@ -53,7 +50,6 @@ export class LoginService {
       return null;
     }
     const expiration = sessionStorage.getItem("expires_at");
-    //const expiresAt = JSON.parse(expiration);
     return moment(expiration);
   }
 
