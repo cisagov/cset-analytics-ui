@@ -45,7 +45,10 @@
             "main": "src/main.ts",
             "outputPath": "dist/CsetAnalytics",
             "polyfills": "src/polyfills.ts",
-            "scripts": ["./node_modules/bootstrap/dist/js/bootstrap.js"],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",

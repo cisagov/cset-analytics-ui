@@ -3,7 +3,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: local.Dockerfile
     container_name: cset-analytics-ui
     restart: unless-stopped
     ports:
