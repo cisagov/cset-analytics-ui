@@ -8,28 +8,28 @@
         <mat-card-content>
           <div *ngIf="showAssessments">
             <table mat-table [dataSource]="data" class="mat-elevation-z2">
-              <ng-container matColumnDef="assessment_Id">
-                <th mat-header-cell *matHeaderCellDef>Assessment Id</th>
-                <td mat-cell *matCellDef="let element">
-                  {{ element.assessment_Id }}
-                </td>
-              </ng-container>
-
-              <!-- Name Column -->
               <ng-container matColumnDef="alias">
-                <th mat-header-cell *matHeaderCellDef>Alias</th>
+                <th mat-header-cell *matHeaderCellDef>Assessment Alias</th>
                 <td mat-cell *matCellDef="let element">{{ element.alias }}</td>
               </ng-container>
-
-              <!-- Weight Column -->
+              <ng-container matColumnDef="setName">
+                <th mat-header-cell *matHeaderCellDef>Standard</th>
+                <td mat-cell *matCellDef="let element">{{ element.setName }}</td>
+              </ng-container>
+              <ng-container matColumnDef="sector">
+                <th mat-header-cell *matHeaderCellDef>Sector</th>
+                <td mat-cell *matCellDef="let element">{{ element.sectorName }}</td>
+              </ng-container>
+              <ng-container matColumnDef="industry">
+                <th mat-header-cell *matHeaderCellDef>Industry</th>
+                <td mat-cell *matCellDef="let element">{{ element.industryName }}</td>
+              </ng-container>
               <ng-container matColumnDef="assessmentCreatedDate">
                 <th mat-header-cell *matHeaderCellDef>Create Date</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.assessmentCreatedDate | date }}
                 </td>
               </ng-container>
-
-              <!-- Symbol Column -->
               <ng-container matColumnDef="lastAccessedDate">
                 <th mat-header-cell *matHeaderCellDef>Last Accessed</th>
                 <td mat-cell *matCellDef="let element">

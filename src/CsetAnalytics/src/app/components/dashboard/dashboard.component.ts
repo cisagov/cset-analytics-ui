@@ -28,8 +28,10 @@ export class DashboardComponent implements OnInit {
   dashboardData: any;
   data: any;
   displayedColumns: string[] = [
-    "assessment_Id",
     "alias",
+    "setName",
+    "sector",
+    "industry",
     "assessmentCreatedDate",
     "lastAccessedDate",
   ];
