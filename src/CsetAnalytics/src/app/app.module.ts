@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CovalentLayoutModule } from '@covalent/core/layout';
 import { CovalentStepsModule  } from '@covalent/core/steps';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartsModule, ThemeService } from 'ng2-charts';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { LoginService } from "./components/login/login.service";
@@ -48,7 +48,7 @@ import { AuthGuard } from './auth/authGuard'
     MaterialModule,
     CovalentLayoutModule,
     CovalentStepsModule,
-    NgxChartsModule,
+    ChartsModule,
     DataTableModule,
     FontAwesomeModule,
   ],
@@ -57,6 +57,7 @@ import { AuthGuard } from './auth/authGuard'
     DashboardService,
     UserManagementService,
     ConfigService,
+    ThemeService,
     {
       provide: APP_INITIALIZER,	  
       useFactory: (configSvc: ConfigService) => () => configSvc.loadConfig(),
