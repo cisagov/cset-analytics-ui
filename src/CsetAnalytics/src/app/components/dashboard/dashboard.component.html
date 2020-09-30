@@ -55,22 +55,9 @@
           <mat-card-title>Assessment Comparison</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <ngx-charts-bar-horizontal
-            [view]="view"
-            [xScaleMax]="100"
-            [scheme]="colorScheme"
-            [results]="dashboardData"
-            [gradient]="gradient"
-            [xAxis]="showXAxis"
-            [yAxis]="showYAxis"
-            [legend]="showLegend"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [xAxisLabel]="xAxisLabel"
-            [yAxisLabel]="yAxisLabel"
-            (select)="onSelect($event)"
-          >
-          </ngx-charts-bar-horizontal>
+          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
         </mat-card-content>
       </mat-card>
     </div>
