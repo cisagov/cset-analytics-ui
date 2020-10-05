@@ -17,7 +17,7 @@
                   autocomplete="off"
                   [errorStateMatcher]="matcherusername"
                 />
-                <mat-icon matPrefix style="margin-right: 10px;">face</mat-icon>
+                <mat-icon matPrefix style="margin-right: 10px">face</mat-icon>
                 <mat-error
                   *ngIf="userFormGroup.controls.username.hasError('required')"
                 >
@@ -35,7 +35,7 @@
                   autocomplete="off"
                   [errorStateMatcher]="matchemail"
                 />
-                <mat-icon matPrefix style="margin-right: 10px;">mail</mat-icon>
+                <mat-icon matPrefix style="margin-right: 10px">mail</mat-icon>
                 <mat-error
                   *ngIf="userFormGroup.controls.email.hasError('required')"
                 >
@@ -58,7 +58,7 @@
                   autocomplete="off"
                   [errorStateMatcher]="matcherpassword"
                 />
-                <mat-icon matPrefix style="margin-right: 10px;">lock</mat-icon>
+                <mat-icon matPrefix style="margin-right: 10px">lock</mat-icon>
                 <mat-error
                   *ngIf="userFormGroup.controls.password.hasError('required')"
                 >
@@ -77,7 +77,7 @@
                   autocomplete="off"
                   [errorStateMatcher]="matcherconfirmpassword"
                 />
-                <mat-icon matPrefix style="margin-right: 10px;">lock</mat-icon>
+                <mat-icon matPrefix style="margin-right: 10px">lock</mat-icon>
                 <mat-error
                   *ngIf="
                     userFormGroup.controls.confirmPassword.hasError('required')
@@ -111,15 +111,15 @@
             </div>
           </form>
         </div>
-        <div class="col-md-6" style="margin-left: 10px;">
-          <div class="row" style="padding-bottom: 10px;">
+        <div class="col-md-6" style="margin-left: 10px">
+          <div class="row" style="padding-bottom: 10px">
             <div class="col-md-12 border-bottom">
               <h5>Password Rules</h5>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <ul style="list-style-type: none; padding: 0;">
+              <ul style="list-style-type: none; padding: 0">
                 <li>
                   <div class="rules-list">
                     <fa-icon

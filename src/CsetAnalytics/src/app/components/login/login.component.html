@@ -4,7 +4,7 @@
   </mat-card-header>
   <mat-card-content>
     <form autocomplete="off">
-      <div style="width: 350px;">
+      <div style="width: 350px">
         <p>
           When submitting anonymous data it is recorded with no user identifying
           information.
@@ -27,7 +27,7 @@
             autocomplete="off"
             [errorStateMatcher]="matcherusername"
           />
-          <mat-icon matPrefix style="margin-right: 10px;">face</mat-icon>
+          <mat-icon matPrefix style="margin-right: 10px">face</mat-icon>
           <mat-error *ngIf="username.hasError('required')">
             Username is <strong>required</strong>
           </mat-error>
@@ -44,7 +44,7 @@
             autocomplete="off"
             [errorStateMatcher]="matcherpassword"
           />
-          <mat-icon matPrefix style="margin-right: 10px;">lock</mat-icon>
+          <mat-icon matPrefix style="margin-right: 10px">lock</mat-icon>
           <mat-error *ngIf="password.hasError('required')">
             Password is <strong>required</strong>
           </mat-error>

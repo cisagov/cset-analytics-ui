@@ -1,19 +1,19 @@
-import { Injectable } from '@angular/core';
-import { Auth } from 'aws-amplify';
-import { Subject, Observable, BehaviorSubject, from } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
-import { environment } from './../../environments/environment';
-import { resolve } from 'dns';
-import { switchMap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Auth } from "aws-amplify";
+import { Subject, Observable, BehaviorSubject, from } from "rxjs";
+import { Router, ActivatedRoute } from "@angular/router";
+import { environment } from "./../../environments/environment";
+import { resolve } from "dns";
+import { switchMap } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UserAuthService {
   currentAuthUser: any;
   public currentAuthUserSubject: BehaviorSubject<string> = new BehaviorSubject<
     string
-  >('Not Authorized');
+  >("Not Authorized");
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.currentAuthUserSubject.subscribe((value) => {
@@ -22,9 +22,7 @@ export class UserAuthService {
   }
 
   // Handles amplify authentification notfications from Hub
-  handleAuthNotification(data) {
-
-  }
+  handleAuthNotification(data) {}
 
   signOut() {
     Auth.signOut();
@@ -58,16 +56,16 @@ export class UserAuthService {
 
   _setUserName(succesfulAuthObject) {
     if (
-      succesfulAuthObject['signInUserSession']['idToken']['payload']['name'] !=
+      succesfulAuthObject["signInUserSession"]["idToken"]["payload"]["name"] !=
       undefined
     ) {
       this.currentAuthUserSubject.next(
         String(
-          succesfulAuthObject['signInUserSession']['idToken']['payload']['name']
+          succesfulAuthObject["signInUserSession"]["idToken"]["payload"]["name"]
         )
       );
     } else {
-      this.currentAuthUserSubject.next(succesfulAuthObject['username']);
+      this.currentAuthUserSubject.next(succesfulAuthObject["username"]);
     }
   }
 
@@ -75,14 +73,14 @@ export class UserAuthService {
     return this.currentAuthUserSubject;
   }
 
-
   getReportToken() {
     if (environment.authorize) {
       return new Promise((resolve, reject) => {
-        this.route.queryParamMap.toPromise()
+        this.route.queryParamMap
+          .toPromise()
           .then((success) => {
             resolve({
-              idToken: success['reportToken'],
+              idToken: success["reportToken"],
             });
           })
           .catch((error) => {
@@ -94,17 +92,17 @@ export class UserAuthService {
 
   getUserTokens() {
     if (environment.authorize) {
-
-      const reportTokenGlobal = (new URL(document.location.toString())).searchParams.get('reportToken');
+      const reportTokenGlobal = new URL(
+        document.location.toString()
+      ).searchParams.get("reportToken");
 
       if (reportTokenGlobal) {
         return new Promise((resolve, reject) => {
           resolve({
-            idToken: reportTokenGlobal
+            idToken: reportTokenGlobal,
           });
         });
-      }
-      else {
+      } else {
         return new Promise((resolve, reject) => {
           Auth.currentAuthenticatedUser()
             .then((success) => {
@@ -123,8 +121,8 @@ export class UserAuthService {
     } else {
       return new Promise((resolve, reject) => {
         resolve({
-          idToken: 'Angular not set to authorize',
-          accessToken: 'Angular not set to authorize',
+          idToken: "Angular not set to authorize",
+          accessToken: "Angular not set to authorize",
         });
       });
     }
