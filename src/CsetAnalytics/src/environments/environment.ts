@@ -4,7 +4,7 @@
 
 export const environment = {
   authorize: true,
-  production: false
+  production: false,
 };
 
 /*

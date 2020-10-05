@@ -14,15 +14,21 @@
               </ng-container>
               <ng-container matColumnDef="setName">
                 <th mat-header-cell *matHeaderCellDef>Standard</th>
-                <td mat-cell *matCellDef="let element">{{ element.setName }}</td>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.setName }}
+                </td>
               </ng-container>
               <ng-container matColumnDef="sector">
                 <th mat-header-cell *matHeaderCellDef>Sector</th>
-                <td mat-cell *matCellDef="let element">{{ element.sectorName }}</td>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.sectorName }}
+                </td>
               </ng-container>
               <ng-container matColumnDef="industry">
                 <th mat-header-cell *matHeaderCellDef>Industry</th>
-                <td mat-cell *matCellDef="let element">{{ element.industryName }}</td>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.industryName }}
+                </td>
               </ng-container>
               <ng-container matColumnDef="assessmentCreatedDate">
                 <th mat-header-cell *matHeaderCellDef>Create Date</th>
@@ -55,9 +61,16 @@
           <mat-card-title>Assessment Comparison</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-        [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
+          <canvas
+            baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+          ></canvas>
         </mat-card-content>
       </mat-card>
     </div>
