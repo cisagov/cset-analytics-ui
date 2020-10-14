@@ -54,7 +54,7 @@ import {
     MatToolbarModule,
     MatMenuModule,
     MatSidenavModule,
-    MatTableModule,
+    MatTableModule
   ],
   exports: [
     MatButtonModule,

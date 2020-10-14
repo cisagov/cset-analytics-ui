@@ -1,21 +1,64 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, AfterViewInit, ViewChild } from "@angular/core";
 import { DashboardService } from "./dashboard.service";
-import { ChartDataSets, ChartOptions, ChartType } from "chart.js";
-import { Label } from "ng2-charts";
-import { label } from "aws-amplify";
-import { title } from "process";
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import { MatPaginator } from '@angular/material/paginator';
+import {merge, Observable, of as observableOf} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import { Label } from 'ng2-charts';
+import { NumberCardComponent } from '@swimlane/ngx-charts';
+import { MatSort } from '@angular/material';
+import { AssessmentsApi } from "./dashboard.service";
+
+interface SectorNode {
+  name: string; 
+  children?: SectorNode[]; 
+}
+
+interface FlatNode {
+  expandable: boolean, 
+  name: string, 
+  level: number, 
+  parent: string
+}
 
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
   styleUrls: ["./dashboard.component.scss"],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements AfterViewInit  {
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
+
   showAssessments: boolean = true;
   showComparison: boolean = false;
+  sectors: any[] = [];
+  resultsLength = 0;
+  isLoadingResults = true;
+  isRateLimitReached = false;
+  selectedSector = '';
+  currentAssessmentId = '';
+  currentAssessmentAlias = '';
+  currentAssessmentStd = '';
+  parent: string = '';
+  sampleSize: number = 0; 
 
   barChartOptions: ChartOptions = {
-    responsive: true,
+    responsive:true,
+    maintainAspectRatio: true,
+    aspectRatio: 2,
+    scales: {
+      xAxes: [{
+        ticks: {
+          beginAtZero: true,
+          stepSize: 10,
+          maxTicksLimit: 100, 
+          max: 100
+        }
+      }]
+    },
     tooltips: {
       callbacks: {
         label: function (tooltipItem, data) {
@@ -33,61 +76,64 @@ export class DashboardComponent implements OnInit {
   };
   barChartType: ChartType = "horizontalBar";
   barChartLegend = true;
-  barChartData: ChartDataSets[] = [
-    {
-      fill: false,
-      data: [
-        { x: 30, y: "Access Control" },
-        { x: 26, y: "Account Management" },
-        { x: 15, y: "Audit and Accountability" },
-        { x: 26, y: "Boundary Protection" },
-        { x: 35, y: "Communication Protection" },
-        { x: 29, y: "Configuration Management" },
-      ],
-      label: "Min",
-      type: "scatter",
-    },
-    {
-      fill: false,
-      data: [
-        { x: 49, y: "Access Control" },
-        { x: 60, y: "Account Management" },
-        { x: 45, y: "Audit and Accountability" },
-        { x: 55, y: "Boundary Protection" },
-        { x: 65, y: "Communication Protection" },
-        { x: 57, y: "Configuration Management" },
-      ],
-      label: "Average",
-      type: "scatter",
-    },
-    {
-      fill: false,
-      data: [
-        { x: 75, y: "Access Control" },
-        { x: 83, y: "Account Management" },
-        { x: 69, y: "Audit and Accountability" },
-        { y: "Boundary Protection", x: 91 },
-        { y: "Communication Protection", x: 85 },
-        { x: 76, y: "Configuration Management" },
-      ],
-      type: "scatter",
-      label: "Max",
-    },
-    {
-      data: [50, 39, 81, 67, 15, 69],
-      label: "Category",
-    },
-  ];
-  barChartLabels: Label[] = [
-    "Access Control",
-    "Account Management",
-    "Audit and Accountability",
-    "Boundary Protection",
-    "Communication Protection",
-    "Configuration Management",
-  ];
 
-  data: any;
+  chartDataMin = {
+    fill: true, 
+    data: [],
+    label: 'Min', 
+    type: 'scatter',
+    pointRadius: 4, 
+    pointHoverRadius: 5,
+    pointBackgroundColor: "#FFA1B5",
+    pointBorderColor: "#FF6384", 
+    pointHoverBackgroundColor: "#FF6384",
+    pointHoverBorderColor: "#FF6384", 
+    backgroundColor: "#FFA1B5",
+    borderColor: "#FF6384"
+    
+  }; 
+  chartDataMedian = {
+    fill: true, 
+    data: [], 
+    label: 'Median', 
+    type: 'scatter', 
+    pointRadius: 4, 
+    pointHoverRadius: 5, 
+    pointBackgroundColor: "#FFE29A",
+    pointBorderColor: "#FFCE56", 
+    pointHoverBackgroundColor: "#FFCE56",
+    pointHoverBorderColor: "#FFCE56", 
+    backgroundColor: "#FFE29A",
+    borderColor: "#FFCE56"
+  };
+  chartDataMax = {
+    fill: true, 
+    data: [], 
+    type: 'scatter', 
+    label: 'Max', 
+    pointRadius: 4, 
+    pointHoverRadius: 5,
+    pointBackgroundColor: "#9FD983",
+    pointBorderColor: "#64BB6A", 
+    pointHoverBackgroundColor: "#64BB6A",
+    pointHoverBorderColor: "#64BB6A", 
+    backgroundColor: "#9FD983",
+    borderColor: "#64BB6A"
+  }; 
+  barChart = {
+    data: [],
+    label: 'Category'
+  }
+
+  barChartData: ChartDataSets[] = [
+    this.chartDataMin
+    , this.chartDataMedian
+    , this.chartDataMax
+    , this.barChart
+    ];
+    barChartLabels: Label[] = [];
+
+  data: any[];
   displayedColumns: string[] = [
     "alias",
     "setName",
@@ -98,47 +144,93 @@ export class DashboardComponent implements OnInit {
   ];
   Assessment_Id: number;
   constructor(private dashboardService: DashboardService) {
-    //Object.assign(this, this.multi);
+   
   }
 
-  ngOnInit() {
-    //this.getDashboardData(2);
+  ngAfterViewInit() {
+    
     this.getAssessmentData();
   }
-  public chartClicked({
-    event,
-    active,
-  }: {
-    event: MouseEvent;
-    active: {}[];
-  }): void {
-    console.log(event, active);
+
+  private _transformer = (node: SectorNode, level: number) => {
+    if(!!node.children && node.children.length>0)
+    {
+      this.parent = node.name;
+    }
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+      parent: !!node.children && node.children.length > 0 ? "" : this.parent
+    };
   }
 
-  public chartHovered({
-    event,
-    active,
-  }: {
-    event: MouseEvent;
-    active: {}[];
-  }): void {
-    console.log(event, active);
+  treeControl = new FlatTreeControl<FlatNode>(node => node.level, node => node.expandable);
+  treeFlattener = new MatTreeFlattener(
+    this._transformer, node => node.level, node => node.expandable, node => node.children
+  );
+  sectorSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+  
+  hasChild = (_: number, node: FlatNode) => {
+    return node.expandable;
+  }
+
+  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    //console.log(event, active);
+  }
+
+  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    //console.log(event, active);
   }
   getAssessmentData() {
-    //if(sessionStorage.getItem("username")){
     this.dashboardService.getAssessmentsForUser("0").subscribe((data: any) => {
       this.data = data;
     });
-    //}
+    merge(this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return this.dashboardService!.getAssessmentsForUser("0");
+      }), 
+      map((data: AssessmentsApi) => {
+        this.isLoadingResults = false;
+        this.isRateLimitReached = false;
+        this.resultsLength = data.total_count;
+
+        return data.items;
+      }),
+      catchError(() => {
+        this.isLoadingResults = false;
+        this.isRateLimitReached = true;
+        return observableOf([]);
+      })
+    ).subscribe(data => this.data = data);
   }
 
-  getDashboardData(Assessment_Id: string) {
-    this.dashboardService.getDashboard(Assessment_Id).subscribe((data: any) => {
-      console.log("this is the data");
-      console.log(data);
-      //this.dashboardData = data;
+  getDashboardData() {
+    this.dashboardService.getDashboard(this.selectedSector, this.currentAssessmentId).subscribe((data: any) => {
+      this.chartDataMin.data = data.min; 
+      this.chartDataMax.data = data.max;
+      this.chartDataMedian.data = data.median;
+      this.barChart.data = data.barData.values;
+      this.barChartLabels= data.barData.labels;
+      this.sampleSize= data.sampleSize;
+      this.barChartData= [
+        this.chartDataMin
+        , this.chartDataMedian
+        , this.chartDataMax
+        , this.barChart
+        ];
+        
       if (this.dashboardService != null) {
         this.showComparison = true;
+        if(this.sectorSource.data.length == 0){
+          this.dashboardService.getSectors().subscribe((data: any) => {
+            this.sectorSource.data = data; 
+            this.selectedSector = "All Sectors";
+          });
+        }
       } else {
         this.showComparison = false;
       }
@@ -146,11 +238,21 @@ export class DashboardComponent implements OnInit {
   }
 
   setRecord(item: any) {
-    console.log(item);
-    this.getDashboardData(item.assessment_Id);
+    this.currentAssessmentId = item.assessment_Id;
+    this.currentAssessmentAlias = item.alias;
+    this.currentAssessmentStd = item.setName;
+    this.selectedSector = "All Sectors";
+    
+    this.getDashboardData();
   }
 
   onSelect(event) {
-    console.log(event);
+    //console.log(event);
+  }
+  sectorChange(sector){
+    this.selectedSector = sector;
+    this.getDashboardData();
+    console.log(sector);
   }
 }
+

@@ -49,6 +49,7 @@
       type="button"
       aria-label="Toggle sidenav"
       (click)="drawer.toggle()"
+      *ngIf="false"
     >
       <i class="material-icons">menu</i>
     </button>
@@ -81,7 +82,7 @@
       #drawer
       class="docs-sidenav"
       mode="side"
-      opened="true"
+      opened="false"
       [fixedInViewport]="false"
       [fixedTopGap]="0"
       [fixedBottomGap]="0"
