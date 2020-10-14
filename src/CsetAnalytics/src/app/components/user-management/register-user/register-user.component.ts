@@ -66,9 +66,9 @@ export class RegisterUserComponent implements OnInit {
 
   submit() {
     if (this.userFormGroup.valid) {
-      this.model.username = this.userFormGroup.controls["username"].value;
-      this.model.email = this.userFormGroup.controls["email"].value;
-      this.model.newPassword = this.userFormGroup.controls["password"].value;
+      this.model.Username = this.userFormGroup.controls["username"].value;
+      this.model.Email = this.userFormGroup.controls["email"].value;
+      this.model.Password = this.userFormGroup.controls["password"].value;
       this.userSvc.postCreateUser(this.model).subscribe(
         (data) => {
           this.openSnackBar("User created successfully", "");

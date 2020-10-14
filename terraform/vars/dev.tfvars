@@ -1,5 +1,9 @@
 app    = "cset-analytics"
 region = "us-east-1"
+env = "dev"
+
+image_repo = "780016325729.dkr.ecr.us-east-1.amazonaws.com/cset-analytics-ui"
+
 vpc_id = "vpc-074f7db64238a2d16"
 
 private_subnet_ids = [
@@ -11,3 +15,5 @@ public_subnet_ids = [
     "subnet-0a365c16b67a2b6b0",
     "subnet-0ea8f699bed93417c"
 ]
+
+domain_name = "inltesting.xyz"

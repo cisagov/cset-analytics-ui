@@ -61,20 +61,20 @@ export class DashboardComponent implements AfterViewInit  {
     },
     tooltips: {
       callbacks: {
-        label: function(tooltipItem, data){
+        label: function (tooltipItem, data) {
           var label = data.datasets[tooltipItem.datasetIndex].label;
-          label += ': '+tooltipItem.xLabel;
+          label += ": " + tooltipItem.xLabel;
           return label;
         },
-        title: function(tooltipItems, data){
+        title: function (tooltipItems, data) {
           var tooltipItem = tooltipItems[0];
           var title = data.labels[tooltipItem.index].toString();
           return title;
         },
-      }
-    }
+      },
+    },
   };
-  barChartType:ChartType='horizontalBar';
+  barChartType: ChartType = "horizontalBar";
   barChartLegend = true;
 
   chartDataMin = {

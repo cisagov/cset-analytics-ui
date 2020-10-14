@@ -19,16 +19,14 @@ export class LoginService {
   }
 
   public postLogin(login: Login): Observable<any> {
-    return this.http
-      .post(this.apiUrl + "auth/signin", login)
-      .pipe(share());
+    return this.http.post(this.apiUrl + "auth/signin", login).pipe(share());
   }
 
   public logout() {
     sessionStorage.removeItem("id_token");
     sessionStorage.removeItem("expires_at");
     sessionStorage.removeItem("username");
-    this.router.navigateByUrl("/login")
+    this.router.navigateByUrl("/login");
   }
 
   public setSession(authResult) {

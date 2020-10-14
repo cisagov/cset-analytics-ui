@@ -1,7 +1,7 @@
 export class RegisterUser {
   constructor(
-    public username: string,
-    public email: string,
-    public newPassword: string
+    public Username: string,
+    public Email: string,
+    public Password: string
   ) {}
 }

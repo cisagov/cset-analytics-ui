@@ -52,6 +52,8 @@ jobs:
           pip install --upgrade --requirement requirements-test.txt
       - name: Set up pre-commit hook environments
         run: pre-commit install-hooks
+      - name: pre-commit autoupdate
+        run: pre-commit autoupdate
       - name: Run pre-commit on all files
         run: pre-commit run --all-files
 
@@ -76,7 +78,13 @@ jobs:
 
       - name: Terraform Init
         working-directory: ./terraform
-        run: terraform init -input=false -backend-config="bucket=$TF_BUCKET" -backend-config="key=tfstate/$ENVIRONMENT/$IMAGE_NAME.tfstate" -backend-config="region=$REGION" -backend-config="dynamodb_table=$TF_DYNAMO_TABLE"
+        run: terraform init -input=false
+
+      - name: Terraform Workspace
+        working-directory: ./terraform
+        run: |
+          terraform workspace select $ENVIRONMENT
+          terraform workspace show
 
       - name: Terraform Validate
         working-directory: ./terraform
@@ -88,4 +96,4 @@ jobs:
 
       - name: Terraform Plan
         working-directory: ./terraform
-        run: terraform plan -input=false -var="image_tag=${{steps.vars.outputs.tag}}" -var="env=$ENVIRONMENT" -var="image_repo=$ECR_URI"
+        run: terraform plan -input=false -var="image_tag=${{steps.vars.outputs.tag}}" -var-file ./vars/$ENVIRONMENT.tfvars
