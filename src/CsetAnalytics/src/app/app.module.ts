@@ -26,7 +26,9 @@ import { RegisterUserComponent } from './components/user-management/register-use
 import { UserManagementService } from './components/user-management/user-management.service';
 import { ConfigService } from './services/config.service';
 import { AuthInterceptor } from './auth/token.interceptor';
-import { AuthGuard } from './auth/authGuard'
+import { AuthGuard } from './auth/authGuard';
+import { MatPaginatorModule } from "@angular/material/paginator"; 
+import { MatDividerModule } from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { AuthGuard } from './auth/authGuard'
     ChartsModule,
     DataTableModule,
     FontAwesomeModule,
+    MatPaginatorModule, 
+    MatDividerModule
   ],
   providers: [
     LoginService,
