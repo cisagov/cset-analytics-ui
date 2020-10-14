@@ -21,7 +21,7 @@ export class LayoutMainComponent implements OnInit {
       });
   }
 
-  @ViewChild("drawer", { static: false })
+  @ViewChild("drawer")
   drawer: MatSidenav;
   
   logout(){
