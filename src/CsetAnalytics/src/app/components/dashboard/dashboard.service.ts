@@ -22,7 +22,7 @@ export class DashboardService {
   }
 
   getAssessmentsForUser(arg0: string): Observable<AssessmentsApi> {
-    return this.http.get<AssessmentsApi>(this.apiUrl + "Dashboard/GetAssessmentList");
+    return this.http.get<AssessmentsApi>(this.apiUrl + "Dashboard/GetAssessmentList?id="+arg0);
   }
 
   getSectors() { 

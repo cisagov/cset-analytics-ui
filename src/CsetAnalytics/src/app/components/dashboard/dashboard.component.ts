@@ -38,7 +38,7 @@ export class DashboardComponent implements AfterViewInit  {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
-  selectedSector = '';
+  selectedSector = 'All Sectors';
   currentAssessmentId = '';
   currentAssessmentAlias = '';
   currentAssessmentStd = '';
@@ -183,15 +183,14 @@ export class DashboardComponent implements AfterViewInit  {
     //console.log(event, active);
   }
   getAssessmentData() {
-    this.dashboardService.getAssessmentsForUser("0").subscribe((data: any) => {
-      this.data = data;
-    });
+    let user = sessionStorage.getItem('username');
+    
     merge(this.paginator.page)
       .pipe(
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.dashboardService!.getAssessmentsForUser("0");
+          return this.dashboardService!.getAssessmentsForUser(user);
       }), 
       map((data: AssessmentsApi) => {
         this.isLoadingResults = false;
@@ -228,20 +227,23 @@ export class DashboardComponent implements AfterViewInit  {
         if(this.sectorSource.data.length == 0){
           this.dashboardService.getSectors().subscribe((data: any) => {
             this.sectorSource.data = data; 
-            this.selectedSector = "All Sectors";
+            this.selectedSector = "|All Sectors";  
+            
           });
         }
+        
       } else {
         this.showComparison = false;
       }
     });
+    
   }
 
   setRecord(item: any) {
     this.currentAssessmentId = item.assessment_Id;
     this.currentAssessmentAlias = item.alias;
     this.currentAssessmentStd = item.setName;
-    this.selectedSector = "All Sectors";
+    this.selectedSector = "|All Sectors";
     
     this.getDashboardData();
   }
