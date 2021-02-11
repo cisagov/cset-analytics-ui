@@ -9,7 +9,6 @@
           "builder": "@angular-devkit/build-angular:browser",
           "configurations": {
             "production": {
-              "aot": true,
               "budgets": [
                 {
                   "maximumError": "5mb",
@@ -39,7 +38,7 @@
             }
           },
           "options": {
-            "aot": false,
+            "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "index": "src/index.html",
             "main": "src/main.ts",

@@ -29,8 +29,8 @@ interface FlatNode {
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements AfterViewInit  {
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   showAssessments: boolean = true;
   showComparison: boolean = false;
