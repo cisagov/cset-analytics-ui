@@ -5,8 +5,6 @@ import { MaterialModule } from "./material.module";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { CovalentLayoutModule } from "@covalent/core/layout";
-import { CovalentStepsModule } from "@covalent/core/steps";
 import { ChartsModule, ThemeService } from "ng2-charts";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
@@ -49,9 +47,7 @@ import { MatDividerModule } from "@angular/material/divider";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,
-    CovalentLayoutModule,
-    CovalentStepsModule,
+    MaterialModule,    
     ChartsModule,
     DataTableModule,
     FontAwesomeModule,
