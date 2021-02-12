@@ -20,7 +20,6 @@ import { LayoutMainComponent } from "./components/layout/layout-main/layout-main
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DashboardService } from './components/dashboard/dashboard.service';
-import { DataTableModule } from 'ng-angular8-datatable';
 import { RegisterUserComponent } from './components/user-management/register-user/register-user.component';
 import { UserManagementService } from './components/user-management/user-management.service';
 import { ConfigService } from './services/config.service';
@@ -48,8 +47,7 @@ import { MatDividerModule } from "@angular/material/divider";
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,    
-    ChartsModule,
-    DataTableModule,
+    ChartsModule,    
     FontAwesomeModule,
     MatPaginatorModule, 
     MatDividerModule
