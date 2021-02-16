@@ -20,14 +20,12 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { MatInputModule } from "@angular/material/input";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTableModule } from "@angular/material/table";
-import {
-  MatToolbarModule,
-  MatProgressBarModule,
-  MatAutocompleteModule,
-  MatSlideToggleModule,
-  MatSidenavModule,
-  MatListModule,
-} from "@angular/material";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatListModule } from "@angular/material/list";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatToolbarModule } from "@angular/material/toolbar";
 
 @NgModule({
   imports: [

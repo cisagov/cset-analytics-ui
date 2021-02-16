@@ -8,7 +8,7 @@ import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { Label } from 'ng2-charts';
 import { NumberCardComponent } from '@swimlane/ngx-charts';
-import { MatSort } from '@angular/material';
+import { MatSort } from '@angular/material/sort';
 import { AssessmentsApi } from "./dashboard.service";
 
 interface SectorNode {
