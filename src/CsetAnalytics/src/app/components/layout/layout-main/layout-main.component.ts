@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatSidenav } from "@angular/material";
+import { MatSidenav } from "@angular/material/sidenav";
 import { LoginService } from "../../login/login.service";
 import { UserAuthService } from "../../../services/user-auth.service";
 import { Router } from "@angular/router";
@@ -22,7 +22,7 @@ export class LayoutMainComponent implements OnInit {
     });
   }
 
-  @ViewChild("drawer", { static: false })
+  @ViewChild("drawer")
   drawer: MatSidenav;
 
   logout() {

@@ -5,8 +5,6 @@ import { MaterialModule } from "./material.module";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { CovalentLayoutModule } from "@covalent/core/layout";
-import { CovalentStepsModule } from "@covalent/core/steps";
 import { ChartsModule, ThemeService } from "ng2-charts";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
@@ -22,7 +20,6 @@ import { LayoutMainComponent } from "./components/layout/layout-main/layout-main
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DashboardService } from './components/dashboard/dashboard.service';
-import { DataTableModule } from 'ng-angular8-datatable';
 import { RegisterUserComponent } from './components/user-management/register-user/register-user.component';
 import { UserManagementService } from './components/user-management/user-management.service';
 import { ConfigService } from './services/config.service';
@@ -49,11 +46,8 @@ import { MatDividerModule } from "@angular/material/divider";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,
-    CovalentLayoutModule,
-    CovalentStepsModule,
-    ChartsModule,
-    DataTableModule,
+    MaterialModule,    
+    ChartsModule,    
     FontAwesomeModule,
     MatPaginatorModule, 
     MatDividerModule
