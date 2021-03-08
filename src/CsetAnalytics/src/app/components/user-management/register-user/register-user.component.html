@@ -5,7 +5,7 @@
   <mat-card-content>
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-5" style="width:325px">
           <form autocomplete="off">
             <p>
               <mat-form-field appearance="outline" [formGroup]="userFormGroup">
@@ -95,7 +95,7 @@
               {{ error }}
             </p>
 
-            <div class="button">
+            <div class="button" style="float:left;">
               <button
                 type="submit"
                 [disabled]="!userFormGroup.valid && !checkPasswordRules()"
@@ -103,7 +103,7 @@
                 color="accent"
                 (click)="submit()"
               >
-                Login
+                Create
               </button>
               <button mat-button [routerLink]="['/login/']" color="accent">
                 Cancel
