@@ -16,18 +16,16 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LayoutBlankComponent } from "./components/layout/layout-blank/layout-blank.component";
 import { LayoutMainComponent } from "./components/layout/layout-main/layout-main.component";
 
-
-import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DashboardService } from './components/dashboard/dashboard.service';
-import { RegisterUserComponent } from './components/user-management/register-user/register-user.component';
-import { UserManagementService } from './components/user-management/user-management.service';
-import { ConfigService } from './services/config.service';
-import { AuthInterceptor } from './auth/token.interceptor';
-import { AuthGuard } from './auth/authGuard';
-import { MatPaginatorModule } from "@angular/material/paginator"; 
+import { LoginComponent } from "./components/login/login.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { DashboardService } from "./components/dashboard/dashboard.service";
+import { RegisterUserComponent } from "./components/user-management/register-user/register-user.component";
+import { UserManagementService } from "./components/user-management/user-management.service";
+import { ConfigService } from "./services/config.service";
+import { AuthInterceptor } from "./auth/token.interceptor";
+import { AuthGuard } from "./auth/authGuard";
+import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatDividerModule } from "@angular/material/divider";
-
 
 @NgModule({
   declarations: [
@@ -46,11 +44,11 @@ import { MatDividerModule } from "@angular/material/divider";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,    
-    ChartsModule,    
+    MaterialModule,
+    ChartsModule,
     FontAwesomeModule,
-    MatPaginatorModule, 
-    MatDividerModule
+    MatPaginatorModule,
+    MatDividerModule,
   ],
   providers: [
     LoginService,

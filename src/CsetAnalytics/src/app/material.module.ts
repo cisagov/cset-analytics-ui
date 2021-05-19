@@ -52,7 +52,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     MatToolbarModule,
     MatMenuModule,
     MatSidenavModule,
-    MatTableModule
+    MatTableModule,
   ],
   exports: [
     MatButtonModule,
