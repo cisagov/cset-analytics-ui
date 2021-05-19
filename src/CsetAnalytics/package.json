@@ -11,7 +11,7 @@
     "@angular/platform-browser-dynamic": "~12.0.0",
     "@angular/router": "~12.0.0",
     "@aws-amplify/api-graphql": "^2.0.0",
-    "@fortawesome/angular-fontawesome": "^0.5.0",
+    "@fortawesome/angular-fontawesome": "^0.9.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@material/snackbar": "^10.0.0",
