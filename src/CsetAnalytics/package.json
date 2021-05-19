@@ -15,7 +15,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@material/snackbar": "^10.0.0",
-    "@swimlane/ngx-charts": "^13.0.2",
+    "@swimlane/ngx-charts": "^18.0.1",
     "aws-amplify": "^4.0.2",
     "aws-amplify-angular": "^5.0.60",
     "bootstrap": "^4.6.0",
