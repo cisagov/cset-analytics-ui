@@ -37,7 +37,6 @@
             }
           },
           "options": {
-            "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -52,7 +51,13 @@
               "src/styles.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.css"
             ],
-            "tsConfig": "tsconfig.app.json"
+            "tsConfig": "tsconfig.app.json",
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           }
         },
         "e2e": {
